@@ -19,4 +19,14 @@ retorna ao pai o número de ID do processo (PID) de seu filho.
 Em essência, isso significa que a única maneira de iniciar novos 
 processos é duplicando um já existente.
 
-Isso pode parecer um problema. Tipicamente, quando voce quer rodar um processo,
+Isso pode parecer um problema. Tipicamente, quando voce quer rodar um novo 
+processo, voce nao quer outra copia do mesmo programa - Voce quer rodar um
+programa diferente. Isso é oque exec() system call faz. O OS para seu processo,
+carrega um novo programa, e começa esse no lugar. Um processo nunca retorna de 
+uma chamada exec() (a menos que haja um erro).
+
+Com esses dois system calls, nos temos os blocks que constroem a maioria
+dos programas que rodar no Unix. Primeiro, um processo existente se divide
+em dois processos separados. Então, a child usa exec() para se substituir
+por um novo programa. O processo pai pode continuar fazendo outras coisas
+e pode até mesmo manter o controle sobre seus filhos, usando a chamada do sistema wait().
