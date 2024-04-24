@@ -1,0 +1,22 @@
+>Como um shell começa seus processos?
+Startar processos é a principal função de um shell
+Programar um shell é muito sobre saber como um processo funciona por 
+debaixo dos panos. 
+Tem 2 formas de startar processos em sistemas UNIX-based. o primeiro
+é ser init. quando um OS unix inicia, seu kernel é carregado. Uma vez 
+carregado e inicializado, o kernel starta apenas um processo, que se 
+chama Init.
+esse processo funciona por todo o tempo que o computador está ligado, e 
+gerencia o carregamento do restante dos processos necessários para que 
+seu computador seja útil.
+
+Como a maioria dos programas não são Init, resta apenas uma maneira 
+prática de iniciar os processos: a chamada de sistema fork(). 
+Quando esta função é chamada, o sistema operacional duplica o processo 
+e inicia a execução de ambos. O processo original é chamado de “pai” e 
+o novo é chamado de “filho”. fork() retorna 0 para o processo filho e 
+retorna ao pai o número de ID do processo (PID) de seu filho. 
+Em essência, isso significa que a única maneira de iniciar novos 
+processos é duplicando um já existente.
+
+Isso pode parecer um problema. Tipicamente, quando voce quer rodar um processo,
